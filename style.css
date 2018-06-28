@@ -1,0 +1,49 @@
+body, html {
+
+    /* The image used */
+    background-image: url("img/background.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+h3 {
+    color: white;
+    font-family: "Open Sans";
+    font-size: 26px;
+    margin-bottom: 0px;
+}
+
+p {
+    color: white;
+    margin-top: 0px;
+    font-size: 16px;
+    font-family: "Open Sans";
+}
+
+/* 231F20 */
+
+#container {
+
+    position: absolute;
+    top: 35%;
+    left: 25%;
+    height: 30%;
+    width: 50%;
+
+}
+
+hr {
+    color: white;
+border-style: solid;
+}
