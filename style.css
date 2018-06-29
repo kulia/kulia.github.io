@@ -1,3 +1,13 @@
+@font-face {
+    font-family: OpenSans-regular2;
+    src: url('fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: OpenSans-light;
+    src: url('fonts/OpenSans-Light.ttf');
+}
+
 body, html {
 
     /* The image used */
@@ -19,7 +29,7 @@ a {
 
 h3 {
     color: white;
-    font-family: "Open Sans";
+    font-family: "OpenSans-regular2";
     font-size: 26px;
     margin-bottom: 0px;
 }
@@ -28,7 +38,8 @@ p {
     color: white;
     margin-top: 0px;
     font-size: 16px;
-    font-family: "Open Sans";
+    font-family: "OpenSans-light";
+    margin-bottom: 10px;
 }
 
 /* 231F20 */
