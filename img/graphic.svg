@@ -1,0 +1,11 @@
+<svg width="342" height="1080" viewBox="0 0 342 1080" fill="none"
+	xmlns="http://www.w3.org/2000/svg">
+	<line x1="10" y1="-10" x2="750.396" y2="-10" transform="matrix(0 1 -0.999943 -0.0106747 77 -28)" stroke="#9DCC0B" stroke-width="20" stroke-linecap="round"/>
+	<line x1="10" y1="-10" x2="750.396" y2="-10" transform="matrix(0 1 -0.999935 -0.0113746 133 -28)" stroke="#F43E3A" stroke-width="20" stroke-linecap="round"/>
+	<path d="M87 719C87 816.071 87 934.089 11 1094" stroke="#9DCC0B" stroke-width="20" stroke-linecap="round"/>
+	<path d="M143 719C143 816.071 143 934.089 106 1094" stroke="#F43E3A" stroke-width="20" stroke-linecap="round"/>
+	<line x1="10" y1="-10" x2="750.396" y2="-10" transform="matrix(0 1 0.999943 -0.0106747 265 -21)" stroke="#FCA116" stroke-width="20" stroke-linecap="round"/>
+	<line x1="10" y1="-10" x2="750.396" y2="-10" transform="matrix(0 1 0.999935 -0.0113746 209 -21)" stroke="#3FCDFA" stroke-width="20" stroke-linecap="round"/>
+	<path d="M255 726C255 823.071 255 941.089 331 1101" stroke="#FCA116" stroke-width="20" stroke-linecap="round"/>
+	<path d="M199 726C199 823.071 199 941.089 236 1101" stroke="#3FCDFA" stroke-width="20" stroke-linecap="round"/>
+</svg>
