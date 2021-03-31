@@ -33,7 +33,7 @@ body {
 }
 
 /* For mobile phones */
-@media (max-width: 640px) {
+@media only screen and (hover: none) and (pointer: coarse) {
   body {
     display: absolute;
   }
