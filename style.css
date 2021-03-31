@@ -13,16 +13,11 @@
 body {
 	color: var(--main-text-color);
 	background-color: var(--main-bg-color);
-	
 	max-height: 100vh;
-
 	display: flex;
 	flex-direction: nowrap;
 	justify-content: flex-start;
-
 	font-family: 'Roboto Mono', monospace;
-
-	margin:0;
 }
 
 .graphic {
@@ -35,6 +30,24 @@ body {
 	flex-direction: column;
 	justify-content: flex-start;
 	margin-top: 40vh;
+}
+
+/* For mobile phones */
+@media (max-width : 640px) {
+		body {display: absolute;}
+		.graphic, .info-container {
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+		}
+
+		.info-container {
+			background-color: var(--main-bg-color);
+			padding: 2rem;
+		}
 }
 
 h1 {
