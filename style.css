@@ -58,9 +58,8 @@ a {
 }
 
 .vertical-line {
-	height: 1px;
 	width: 100%;
-	background-color: var(--main-text-color);
+	border-top: 1px solid var(--main-text-color);
 }
 
 a:hover {
