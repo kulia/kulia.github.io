@@ -50,6 +50,16 @@ body {
   .info-container {
     background-color: var(--main-bg-color);
     padding: 2rem;
+    width: 70vw;
+  }
+
+  h1 {
+    font-size: 72px;
+  }
+
+  p,
+  ul {
+    font-size: 32px;
   }
 }
 
