@@ -68,17 +68,17 @@ a:hover {
 
 #svg-graphic-green-line {
 	stroke: var(--green-color);
-	animation: animate 2s linear;
+	animation: animate 1.5s linear;
 }
 
 #svg-graphic-red-line {
 	stroke: var(--red-color);
-	animation: animate 1.5s linear;
+	animation: animate 1.2s linear;
 }
 
 #svg-graphic-blue-line {
 	stroke: var(--blue-color);
-	animation: animate 1.2s linear;
+	animation: animate 1.7s linear;
 }
 
 #svg-graphic-orange-line {
