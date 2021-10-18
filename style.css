@@ -18,6 +18,7 @@ body {
   flex-direction: nowrap;
   justify-content: flex-start;
   font-family: 'Roboto Mono', monospace;
+  overflow: hidden;
 }
 
 .graphic {
