@@ -1,3 +1,3 @@
-# kulia.github.io
+# kulia.no
 
-Simple contact information webpage. Visit [kulia.no](http://kulia.no) to see it.
+Website for Kulia Holding AS.
