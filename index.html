@@ -73,11 +73,13 @@
 		.page {
 			position: relative;
 			z-index: 2;
-			min-height: 100vh;
+			height: 100vh;
+			height: 100dvh;
 			display: flex;
 			flex-direction: column;
 			opacity: 0;
 			animation: pageIn 2.2s 0.1s ease-out forwards;
+			overflow: hidden;
 		}
 
 		nav {
