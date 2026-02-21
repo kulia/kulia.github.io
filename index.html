@@ -17,12 +17,12 @@
 	<meta property="og:url" content="https://kulia.no/">
 	<meta property="og:locale" content="nb_NO">
 	<!-- Google Analytics — replace G-XXXXXXXXXX with your Measurement ID -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-12XY9R26ZS"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag() { dataLayer.push(arguments); }
 		gtag('js', new Date());
-		gtag('config', 'G-XXXXXXXXXX');
+		gtag('config', 'G-12XY9R26ZS');
 	</script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,7 +97,7 @@
 		nav {
 			padding: 3rem 4rem;
 			display: flex;
-			justify-content: space-between;
+			justify-content: flex-end;
 			align-items: center;
 		}
 
@@ -113,9 +113,9 @@
 		}
 
 		.logo-debossed {
-			fill: rgba(46, 42, 37, 0.3);
+			fill: rgba(46, 42, 37, 0.32);
 			filter:
-				drop-shadow(-0.7px -0.7px 0px rgba(255, 255, 255, 0.75)) drop-shadow(0.7px 0.7px 0.5px rgba(46, 42, 37, 0.18));
+				drop-shadow(-1.2px -1.2px 0px rgba(255, 255, 255, 0.8)) drop-shadow(1.2px 1.2px 0.8px rgba(46, 42, 37, 0.22));
 		}
 
 		.nav-link {
@@ -154,6 +154,12 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+		}
+
+		.seal {
+			width: 50px;
+			height: 51px;
+			margin-bottom: 2rem;
 		}
 
 		.title {
@@ -271,9 +277,12 @@
 	<div class="page">
 
 		<nav>
-			<a href="/" class="nav-logo" aria-label="Kulia Holding — hjem">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="682 219 636 653" width="32" height="33" role="img"
-					aria-hidden="true">
+			<a href="https://calendly.com/kulia" target="_blank" rel="noopener noreferrer" class="nav-link">Henvendelse</a>
+		</nav>
+
+		<main>
+			<div class="center-block">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="682 219 636 653" class="seal" role="img" aria-hidden="true">
 					<g transform="translate(0,1090) scale(0.1,-0.1)" class="logo-debossed" fill-rule="evenodd">
 						<path
 							d="M9710 8499 c-613 -65 -1140 -292 -1628 -703 -85 -71 -249 -237 -328 -331 -481 -571 -734 -1269 -734 -2025 0 -346 55 -678 164 -996 269 -782 806 -1400 1531 -1762 394 -197 762 -287 1230 -299 358 -9 638 32 970 142 356 119 721 326 1000 569 310 269 539 565 730 941 162 318 249 598 312 995 22 143 26 650 5 795 -73 513 -229 944 -485 1333 -91 139 -100 151 -228 305 -81 97 -295 311 -342 342 -34 22 -19 35 -166 -148 -92 -116 -108 -142 -99 -155 7 -10 50 -53 97 -97 120 -111 249 -261 365 -424 39 -56 170 -280 199 -342 61 -131 84 -188 122 -299 154 -445 189 -892 109 -1380 -8 -52 -22 -117 -30 -145 -53 -186 -69 -239 -96 -315 -40 -113 -163 -363 -232 -473 -148 -236 -381 -499 -586 -664 -407 -328 -886 -521 -1396 -564 -558 -47 -1171 123 -1631 453 -178 129 -215 160 -348 293 -240 240 -397 461 -540 761 -106 222 -192 518 -225 769 -53 415 -16 825 111 1222 125 391 378 793 682 1086 322 311 712 532 1114 632 273 68 470 91 723 82 191 -7 315 -24 485 -64 173 -42 167 -43 249 58 39 48 98 119 130 158 38 46 56 75 49 82 -24 24 -279 100 -433 129 -192 36 -356 50 -570 49 -113 -1 -239 -5 -280 -10z" />
@@ -283,12 +292,6 @@
 							d="M10960 6295 l0 -545 -379 0 -379 0 -28 -33 c-16 -18 -55 -67 -87 -109 l-59 -77 73 -110 72 -111 394 0 393 0 0 -805 0 -805 250 0 250 0 0 1570 0 1570 -250 0 -250 0 0 -545z" />
 					</g>
 				</svg>
-			</a>
-			<a href="https://calendly.com/kulia" target="_blank" rel="noopener noreferrer" class="nav-link">Henvendelse</a>
-		</nav>
-
-		<main>
-			<div class="center-block">
 				<h1 class="title">Kulia</h1>
 				<p class="framing">Privat investeringsselskap</p>
 			</div>
