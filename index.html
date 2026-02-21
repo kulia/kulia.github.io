@@ -1,258 +1,313 @@
 <!DOCTYPE html>
+<html lang="nb">
 
-<html lang="no">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kulia Holding</title>
-<meta name="description" content="Kulia Holding AS — Lillesand, Norge">
-<meta name="format-detection" content="telephone=no">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<!-- Google Analytics — replace G-XXXXXXXXXX with your Measurement ID -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --parchment: #F0EAE0;
-    --ink: #2E2A25;
-    --ink-soft: rgba(46,42,37,0.3);
-    --ink-faint: rgba(46,42,37,0.1);
-    --ink-ghost: rgba(46,42,37,0.05);
-    --gold: #8C7B54;
-  }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Kulia Holding — Privat investeringsselskap</title>
+	<meta name="description"
+		content="Kulia Holding AS er et privat investeringsselskap basert i Lillesand, Norge. Org.nr 936 203 825.">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="theme-color" content="#F0EAE0">
+	<link rel="canonical" href="https://kulia.no/">
+	<!-- Open Graph -->
+	<meta property="og:title" content="Kulia Holding">
+	<meta property="og:description" content="Privat investeringsselskap — Lillesand, Norge">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://kulia.no/">
+	<meta property="og:locale" content="nb_NO">
+	<!-- Google Analytics — replace G-XXXXXXXXXX with your Measurement ID -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'G-XXXXXXXXXX');
+	</script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap"
+		rel="stylesheet">
+	<style>
+		:root {
+			--parchment: #F0EAE0;
+			--ink: #2E2A25;
+			--gold: #8C7B54;
+		}
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
-  html { height: 100%; }
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
 
-body {
-font-family: ‘Cormorant Garamond’, Georgia, serif;
-background: var(–parchment);
-color: var(–ink);
--webkit-font-smoothing: antialiased;
-min-height: 100%;
-}
+		html {
+			height: 100%;
+		}
 
-/* Cotton paper texture */
-body::before {
-content: ‘’;
-position: fixed;
-inset: 0;
-pointer-events: none;
-z-index: 1;
-opacity: 0.055;
-background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 600 600’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘1.1’ numOctaves=‘5’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’/%3E%3C/svg%3E”);
-background-repeat: repeat;
-background-size: 300px 300px;
-}
+		body {
+			font-family: 'Cormorant Garamond', Georgia, serif;
+			background: var(--parchment);
+			color: var(--ink);
+			-webkit-font-smoothing: antialiased;
+			min-height: 100%;
+		}
 
-/* Aged paper vignette */
-body::after {
-content: ‘’;
-position: fixed;
-inset: 0;
-pointer-events: none;
-z-index: 0;
-background: radial-gradient(ellipse 80% 70% at 50% 46%, transparent 50%, rgba(160,148,130,0.07) 100%);
-}
+		/* Prevent iOS link color override */
+		a {
+			-webkit-tap-highlight-color: transparent;
+		}
 
-.page {
-position: relative;
-z-index: 2;
-height: 100vh;
-height: 100dvh;
-display: flex;
-flex-direction: column;
-opacity: 0;
-animation: pageIn 2.2s 0.1s ease-out forwards;
-overflow: hidden;
-}
+		/* Cotton paper texture */
+		body::before {
+			content: '';
+			position: fixed;
+			inset: 0;
+			pointer-events: none;
+			z-index: 1;
+			opacity: 0.055;
+			background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+			background-repeat: repeat;
+			background-size: 300px 300px;
+		}
 
-nav {
-padding: 3rem 4rem;
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
+		/* Aged paper vignette */
+		body::after {
+			content: '';
+			position: fixed;
+			inset: 0;
+			pointer-events: none;
+			z-index: 0;
+			background: radial-gradient(ellipse 80% 70% at 50% 46%, transparent 50%, rgba(160, 148, 130, 0.07) 100%);
+		}
 
-.nav-logo {
-display: inline-block;
-text-decoration: none;
-line-height: 0;
-}
+		.page {
+			position: relative;
+			z-index: 2;
+			height: 100vh;
+			height: 100dvh;
+			display: flex;
+			flex-direction: column;
+			opacity: 0;
+			animation: pageIn 2.2s 0.1s ease-out forwards;
+			overflow: hidden;
+		}
 
-.nav-logo svg { width: 32px; height: 33px; }
+		/* Nav */
+		nav {
+			padding: 3rem 4rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
 
-.logo-debossed {
-fill: rgba(46,42,37,0.25);
-filter:
-drop-shadow(-0.6px -0.6px 0px rgba(255,255,255,0.7))
-drop-shadow(0.6px 0.6px 0.5px rgba(46,42,37,0.18));
-}
+		.nav-logo {
+			display: inline-block;
+			text-decoration: none;
+			line-height: 0;
+		}
 
-.nav-link {
-font-size: 0.625rem;
-font-weight: 400;
-letter-spacing: 0.25em;
-text-transform: uppercase;
-text-decoration: none;
-color: var(–gold) !important;
-opacity: 0.7;
-transition: opacity 0.5s ease;
--webkit-text-fill-color: var(–gold);
--webkit-tap-highlight-color: transparent;
-}
+		.nav-logo svg {
+			width: 32px;
+			height: 33px;
+		}
 
-.nav-link:hover { opacity: 1; }
+		.logo-debossed {
+			fill: rgba(46, 42, 37, 0.3);
+			filter:
+				drop-shadow(-0.7px -0.7px 0px rgba(255, 255, 255, 0.75)) drop-shadow(0.7px 0.7px 0.5px rgba(46, 42, 37, 0.18));
+		}
 
-main {
-flex: 1;
-display: flex;
-justify-content: center;
-align-items: center;
-padding: 0 2rem;
-padding-bottom: 12vh;
-}
+		.nav-link {
+			font-size: 0.625rem;
+			font-weight: 400;
+			letter-spacing: 0.25em;
+			text-transform: uppercase;
+			text-decoration: none !important;
+			color: var(--gold) !important;
+			-webkit-text-fill-color: var(--gold) !important;
+			opacity: 0.8;
+			transition: opacity 0.5s ease;
+		}
 
-.title {
-font-size: clamp(3rem, 6.5vw, 6.5rem);
-font-weight: 400;
-letter-spacing: 0.18em;
-text-transform: uppercase;
-user-select: none;
-padding-right: 0.18em;
-color: rgba(46,42,37,0.25);
-text-shadow:
--1px -1px 0px rgba(255,255,255,0.7),
-1px  1px 0px rgba(46,42,37,0.18),
-0px  1px 3px rgba(46,42,37,0.08);
-margin-bottom: 1.25rem;
-}
+		.nav-link:visited,
+		.nav-link:active {
+			color: var(--gold) !important;
+			-webkit-text-fill-color: var(--gold) !important;
+		}
 
-.framing {
-font-size: 0.6875rem;
-font-weight: 300;
-letter-spacing: 0.14em;
-text-transform: uppercase;
-color: rgba(46,42,37,0.3);
-}
+		.nav-link:hover {
+			opacity: 1;
+		}
 
-footer {
-padding: 0 4rem 3rem;
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 1.25rem;
-}
+		/* Main */
+		main {
+			flex: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 0 2rem;
+			padding-bottom: 12vh;
+		}
 
-.footer-row {
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 1.75rem;
-}
+		.center-block {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
 
-.footer-text {
-font-size: 0.625rem;
-font-weight: 300;
-letter-spacing: 0.12em;
-color: rgba(46,42,37,0.4);
-text-transform: uppercase;
-min-width: 5.5em;
-}
+		.title {
+			font-size: clamp(3rem, 6.5vw, 6.5rem);
+			font-weight: 400;
+			letter-spacing: 0.18em;
+			text-transform: uppercase;
+			user-select: none;
+			padding-right: 0.18em;
+			color: rgba(46, 42, 37, 0.32);
+			text-shadow:
+				-1px -1px 0px rgba(255, 255, 255, 0.75),
+				1px 1px 0px rgba(46, 42, 37, 0.2),
+				0px 1px 3px rgba(46, 42, 37, 0.08);
+			margin-bottom: 1.25rem;
+		}
 
-.footer-text-left { text-align: right; }
-.footer-text-right { text-align: left; }
+		.framing {
+			font-size: 0.6875rem;
+			font-weight: 300;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+			color: rgba(46, 42, 37, 0.38);
+			padding-right: 0.14em;
+		}
 
-.footer-ornament {
-display: flex;
-align-items: center;
-gap: 0.625rem;
-}
+		/* Footer */
+		footer {
+			padding: 0 4rem 3rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 1.25rem;
+		}
 
-.footer-line {
-width: 28px;
-height: 1px;
-background: rgba(46,42,37,0.08);
-}
+		.footer-row {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 1.75rem;
+		}
 
-.footer-diamond {
-width: 4px;
-height: 4px;
-background: var(–gold);
-transform: rotate(45deg);
-opacity: 0.35;
-}
+		.footer-text {
+			font-size: 0.625rem;
+			font-weight: 300;
+			letter-spacing: 0.12em;
+			color: rgba(46, 42, 37, 0.45);
+			text-transform: uppercase;
+			min-width: 5.5em;
+		}
 
-.footer-legal {
-font-size: 0.5rem;
-font-weight: 300;
-letter-spacing: 0.1em;
-color: rgba(46,42,37,0.2);
-text-transform: uppercase;
-}
+		.footer-text-left {
+			text-align: right;
+		}
 
-.footer-legal a {
-color: inherit;
-text-decoration: none;
-pointer-events: none;
-}
+		.footer-text-right {
+			text-align: left;
+		}
 
-@keyframes pageIn {
-from { opacity: 0; }
-to { opacity: 1; }
-}
+		.footer-ornament {
+			display: flex;
+			align-items: center;
+			gap: 0.625rem;
+		}
 
-@media (max-width: 640px) {
-nav { padding: 2rem 1.5rem; }
-footer { padding: 0 1.5rem 2rem; }
-.footer-ornament { display: none; }
-}
-</style>
+		.footer-line {
+			width: 28px;
+			height: 1px;
+			background: rgba(46, 42, 37, 0.1);
+		}
 
+		.footer-diamond {
+			width: 4px;
+			height: 4px;
+			background: var(--gold);
+			transform: rotate(45deg);
+			opacity: 0.4;
+		}
+
+		.footer-legal {
+			font-size: 0.5rem;
+			font-weight: 300;
+			letter-spacing: 0.1em;
+			color: rgba(46, 42, 37, 0.25);
+			text-transform: uppercase;
+		}
+
+		@keyframes pageIn {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		@media (max-width: 640px) {
+			nav {
+				padding: 2rem 1.5rem;
+			}
+
+			footer {
+				padding: 0 1.5rem 2rem;
+			}
+
+			.footer-ornament {
+				display: none;
+			}
+		}
+	</style>
 </head>
+
 <body>
-<div class="page">
+	<div class="page">
 
-  <nav>
-    <a href="#" class="nav-logo" aria-label="Kulia Holding">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="682 219 636 653" width="32" height="33">
-        <g transform="translate(0,1090) scale(0.1,-0.1)" class="logo-debossed" fill-rule="evenodd">
-          <path d="M9710 8499 c-613 -65 -1140 -292 -1628 -703 -85 -71 -249 -237 -328 -331 -481 -571 -734 -1269 -734 -2025 0 -346 55 -678 164 -996 269 -782 806 -1400 1531 -1762 394 -197 762 -287 1230 -299 358 -9 638 32 970 142 356 119 721 326 1000 569 310 269 539 565 730 941 162 318 249 598 312 995 22 143 26 650 5 795 -73 513 -229 944 -485 1333 -91 139 -100 151 -228 305 -81 97 -295 311 -342 342 -34 22 -19 35 -166 -148 -92 -116 -108 -142 -99 -155 7 -10 50 -53 97 -97 120 -111 249 -261 365 -424 39 -56 170 -280 199 -342 61 -131 84 -188 122 -299 154 -445 189 -892 109 -1380 -8 -52 -22 -117 -30 -145 -53 -186 -69 -239 -96 -315 -40 -113 -163 -363 -232 -473 -148 -236 -381 -499 -586 -664 -407 -328 -886 -521 -1396 -564 -558 -47 -1171 123 -1631 453 -178 129 -215 160 -348 293 -240 240 -397 461 -540 761 -106 222 -192 518 -225 769 -53 415 -16 825 111 1222 125 391 378 793 682 1086 322 311 712 532 1114 632 273 68 470 91 723 82 191 -7 315 -24 485 -64 173 -42 167 -43 249 58 39 48 98 119 130 158 38 46 56 75 49 82 -24 24 -279 100 -433 129 -192 36 -356 50 -570 49 -113 -1 -239 -5 -280 -10z"/>
-          <path d="M11240 8177 c-37 -46 -276 -342 -370 -457 -30 -37 -145 -177 -255 -310 -110 -133 -243 -295 -295 -359 -393 -486 -631 -777 -1125 -1381 l-150 -183 -3 847 -2 846 -39 0 c-82 0 -270 -50 -361 -95 -25 -13 -56 -35 -70 -50 l-25 -27 -3 -1579 -2 -1579 250 0 250 0 0 461 0 461 91 112 c50 61 128 157 174 213 l83 102 123 -167 c67 -92 155 -212 196 -267 371 -508 533 -726 548 -738 7 -6 567 -4 582 2 2 1 -4 9 -12 19 -15 18 -60 79 -390 527 -427 580 -512 695 -622 841 -62 84 -113 154 -113 158 0 3 24 34 53 68 29 35 172 209 317 388 302 372 351 432 602 740 101 124 194 239 208 256 14 17 70 86 125 154 55 68 154 189 220 271 66 81 183 225 260 319 77 94 148 182 159 195 10 12 16 27 12 33 -12 20 -356 222 -377 222 -3 0 -20 -20 -39 -43z"/>
-          <path d="M10960 6295 l0 -545 -379 0 -379 0 -28 -33 c-16 -18 -55 -67 -87 -109 l-59 -77 73 -110 72 -111 394 0 393 0 0 -805 0 -805 250 0 250 0 0 1570 0 1570 -250 0 -250 0 0 -545z"/>
-        </g>
-      </svg>
-    </a>
-    <a href="https://calendly.com/kulia" target="_blank" rel="noopener" class="nav-link">Henvendelse</a>
-  </nav>
+		<nav>
+			<a href="/" class="nav-logo" aria-label="Kulia Holding — hjem">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="682 219 636 653" width="32" height="33" role="img"
+					aria-hidden="true">
+					<g transform="translate(0,1090) scale(0.1,-0.1)" class="logo-debossed" fill-rule="evenodd">
+						<path
+							d="M9710 8499 c-613 -65 -1140 -292 -1628 -703 -85 -71 -249 -237 -328 -331 -481 -571 -734 -1269 -734 -2025 0 -346 55 -678 164 -996 269 -782 806 -1400 1531 -1762 394 -197 762 -287 1230 -299 358 -9 638 32 970 142 356 119 721 326 1000 569 310 269 539 565 730 941 162 318 249 598 312 995 22 143 26 650 5 795 -73 513 -229 944 -485 1333 -91 139 -100 151 -228 305 -81 97 -295 311 -342 342 -34 22 -19 35 -166 -148 -92 -116 -108 -142 -99 -155 7 -10 50 -53 97 -97 120 -111 249 -261 365 -424 39 -56 170 -280 199 -342 61 -131 84 -188 122 -299 154 -445 189 -892 109 -1380 -8 -52 -22 -117 -30 -145 -53 -186 -69 -239 -96 -315 -40 -113 -163 -363 -232 -473 -148 -236 -381 -499 -586 -664 -407 -328 -886 -521 -1396 -564 -558 -47 -1171 123 -1631 453 -178 129 -215 160 -348 293 -240 240 -397 461 -540 761 -106 222 -192 518 -225 769 -53 415 -16 825 111 1222 125 391 378 793 682 1086 322 311 712 532 1114 632 273 68 470 91 723 82 191 -7 315 -24 485 -64 173 -42 167 -43 249 58 39 48 98 119 130 158 38 46 56 75 49 82 -24 24 -279 100 -433 129 -192 36 -356 50 -570 49 -113 -1 -239 -5 -280 -10z" />
+						<path
+							d="M11240 8177 c-37 -46 -276 -342 -370 -457 -30 -37 -145 -177 -255 -310 -110 -133 -243 -295 -295 -359 -393 -486 -631 -777 -1125 -1381 l-150 -183 -3 847 -2 846 -39 0 c-82 0 -270 -50 -361 -95 -25 -13 -56 -35 -70 -50 l-25 -27 -3 -1579 -2 -1579 250 0 250 0 0 461 0 461 91 112 c50 61 128 157 174 213 l83 102 123 -167 c67 -92 155 -212 196 -267 371 -508 533 -726 548 -738 7 -6 567 -4 582 2 2 1 -4 9 -12 19 -15 18 -60 79 -390 527 -427 580 -512 695 -622 841 -62 84 -113 154 -113 158 0 3 24 34 53 68 29 35 172 209 317 388 302 372 351 432 602 740 101 124 194 239 208 256 14 17 70 86 125 154 55 68 154 189 220 271 66 81 183 225 260 319 77 94 148 182 159 195 10 12 16 27 12 33 -12 20 -356 222 -377 222 -3 0 -20 -20 -39 -43z" />
+						<path
+							d="M10960 6295 l0 -545 -379 0 -379 0 -28 -33 c-16 -18 -55 -67 -87 -109 l-59 -77 73 -110 72 -111 394 0 393 0 0 -805 0 -805 250 0 250 0 0 1570 0 1570 -250 0 -250 0 0 -545z" />
+					</g>
+				</svg>
+			</a>
+			<a href="https://calendly.com/kulia" target="_blank" rel="noopener noreferrer" class="nav-link">Henvendelse</a>
+		</nav>
 
-  <main>
-    <div style="display:flex;flex-direction:column;align-items:center;">
-      <h1 class="title">Kulia</h1>
-      <p class="framing">Privat investeringsselskap</p>
-    </div>
-  </main>
+		<main>
+			<div class="center-block">
+				<h1 class="title">Kulia</h1>
+				<p class="framing">Privat investeringsselskap</p>
+			</div>
+		</main>
 
-  <footer>
-    <div class="footer-row">
-      <span class="footer-text footer-text-left">Lillesand</span>
-      <div class="footer-ornament">
-        <div class="footer-line"></div>
-        <div class="footer-diamond"></div>
-        <div class="footer-line"></div>
-      </div>
-      <span class="footer-text footer-text-right">Norge</span>
-    </div>
-    <div class="footer-legal">Kulia Holding AS &middot; Org.nr 936&thinsp;203&thinsp;<!---->825</div>
-  </footer>
+		<footer>
+			<div class="footer-row">
+				<span class="footer-text footer-text-left">Lillesand</span>
+				<div class="footer-ornament" aria-hidden="true">
+					<div class="footer-line"></div>
+					<div class="footer-diamond"></div>
+					<div class="footer-line"></div>
+				</div>
+				<span class="footer-text footer-text-right">Norge</span>
+			</div>
+			<div class="footer-legal">Kulia Holding AS &middot; Org.nr 936&thinsp;203&thinsp;<!---->825</div>
+		</footer>
 
-</div>
+	</div>
 </body>
+
 </html>
