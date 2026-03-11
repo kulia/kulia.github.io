@@ -1,317 +1,392 @@
 <!DOCTYPE html>
 <html lang="nb">
-
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Kulia Holding — Privat investeringsselskap</title>
-	<meta name="description"
-		content="Kulia Holding AS er et privat investeringsselskap basert i Lillesand, Norge. Org.nr 936 203 825.">
-	<meta name="format-detection" content="telephone=no">
-	<meta name="theme-color" content="#F0EAE0">
-	<link rel="canonical" href="https://kulia.no/">
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-	<!-- Open Graph -->
-	<meta property="og:title" content="Kulia Holding">
-	<meta property="og:description" content="Privat investeringsselskap — Lillesand, Norge">
-	<meta property="og:type" content="website">
-	<meta property="og:url" content="https://kulia.no/">
-	<meta property="og:locale" content="nb_NO">
-	<!-- Google Analytics — replace G-XXXXXXXXXX with your Measurement ID -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-12XY9R26ZS"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
-		gtag('config', 'G-12XY9R26ZS');
-	</script>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap"
-		rel="stylesheet">
-	<style>
-		:root {
-			--parchment: #F0EAE0;
-			--ink: #2E2A25;
-			--gold: #8C7B54;
-		}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kulia Holding — Privat investeringsselskap</title>
+<meta name="description" content="Kulia Holding AS er et privat investeringsselskap basert i Lillesand, Norge. Org.nr 936 203 825.">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#EDE8DF">
+<link rel="canonical" href="https://kulia.no/">
+<meta property="og:title" content="Kulia Holding">
+<meta property="og:description" content="Privat investeringsselskap — Lillesand, Norge">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kulia.no/">
+<meta property="og:locale" content="nb_NO">
 
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-12XY9R26ZS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-12XY9R26ZS');
+</script>
 
-		html {
-			height: 100%;
-		}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 
-		body {
-			font-family: 'Cormorant Garamond', Georgia, serif;
-			background: var(--parchment);
-			color: var(--ink);
-			-webkit-font-smoothing: antialiased;
-			min-height: 100%;
-		}
+<style>
+  :root {
+    --parchment: #EDE8DF;
+    --ink: #1E1C19;
+    --warm: #3D3830;
+    --muted: rgba(61, 56, 48, 0.48);
+    --faint: rgba(61, 56, 48, 0.20);
+    --ghost: rgba(61, 56, 48, 0.09);
+    --gold: #8E7E5A;
+    --gold-line: rgba(142, 126, 90, 0.30);
+  }
 
-		/* Prevent iOS link color override */
-		a {
-			-webkit-tap-highlight-color: transparent;
-		}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { height: 100%; }
 
-		/* Cotton paper texture */
-		body::before {
-			content: '';
-			position: fixed;
-			inset: 0;
-			pointer-events: none;
-			z-index: 1;
-			opacity: 0.055;
-			background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-			background-repeat: repeat;
-			background-size: 300px 300px;
-		}
+  body {
+    font-family: 'EB Garamond', 'Times New Roman', serif;
+    background: var(--parchment);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100%;
+    overflow: hidden;
+  }
 
-		/* Aged paper vignette */
-		body::after {
-			content: '';
-			position: fixed;
-			inset: 0;
-			pointer-events: none;
-			z-index: 0;
-			background: radial-gradient(ellipse 80% 70% at 50% 46%, transparent 50%, rgba(160, 148, 130, 0.07) 100%);
-		}
+  /* Cotton paper grain */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
 
-		.page {
-			position: relative;
-			z-index: 2;
-			height: 100vh;
-			height: 100dvh;
-			display: flex;
-			flex-direction: column;
-			opacity: 0;
-			animation: pageIn 2.2s 0.1s ease-out forwards;
-			overflow: hidden;
-		}
+  a { -webkit-tap-highlight-color: transparent; }
 
-		/* Nav */
-		nav {
-			padding: 3rem 4rem;
-			display: flex;
-			justify-content: flex-end;
-			align-items: center;
-		}
+  /* ── Lorenz canvas ── */
+  #lorenz {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    animation: watermark-in 4s 2s ease-out forwards;
+  }
 
-		.nav-logo {
-			display: inline-block;
-			text-decoration: none;
-			line-height: 0;
-		}
+  @keyframes watermark-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
 
-		.nav-logo svg {
-			width: 32px;
-			height: 33px;
-		}
+  /* ── Page ── */
+  .page {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    height: 100dvh;
+    width: 100%;
+  }
 
-		.logo-debossed {
-			fill: rgba(46, 42, 37, 0.32);
-			filter:
-				drop-shadow(-1.2px -1.2px 0px rgba(255, 255, 255, 0.8)) drop-shadow(1.2px 1.2px 0.8px rgba(46, 42, 37, 0.22));
-		}
+  /* ── Upper block: monogram + title at 1/3 ── */
+  .upper {
+    position: absolute;
+    top: 33.3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-		.nav-link {
-			font-size: 0.625rem;
-			font-weight: 400;
-			letter-spacing: 0.25em;
-			text-transform: uppercase;
-			text-decoration: none !important;
-			color: var(--gold) !important;
-			-webkit-text-fill-color: var(--gold) !important;
-			opacity: 0.8;
-			transition: opacity 0.5s ease;
-		}
+  .monogram {
+    width: 36px;
+    height: 37px;
+    margin-bottom: 1.6rem;
+    opacity: 0;
+    animation: rise 1.4s 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .monogram svg { width: 100%; height: 100%; }
+  .monogram-fill {
+    fill: rgba(61, 56, 48, 0.18);
+    filter:
+      drop-shadow(-0.8px -0.8px 0px rgba(255,255,255,0.65))
+      drop-shadow(0.8px 0.8px 0.5px rgba(61,56,48,0.12));
+  }
 
-		.nav-link:visited,
-		.nav-link:active {
-			color: var(--gold) !important;
-			-webkit-text-fill-color: var(--gold) !important;
-		}
+  .title {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(2.6rem, 5.2vw, 4.6rem);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    padding-right: 0.24em;
+    user-select: none;
+    color: rgba(61, 56, 48, 0.28);
+    text-shadow:
+      -1px -1px 0px rgba(255, 255, 255, 0.70),
+       1px  1px 0px rgba(61, 56, 48, 0.14),
+       0px  1px 2px rgba(61, 56, 48, 0.06);
+    opacity: 0;
+    animation: rise-title 1.4s 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 
-		.nav-link:hover {
-			opacity: 1;
-		}
+  /* ── Lower block: ornament + tagline at 2/3 ── */
+  .lower {
+    position: absolute;
+    top: 66.6%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-		/* Main */
-		main {
-			flex: 1;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			padding: 0 2rem;
-			padding-bottom: 12vh;
-		}
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+    opacity: 0;
+    animation: rise 1.4s 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .orn-line {
+    width: 32px;
+    height: 0;
+    border-top: 1px solid var(--gold-line);
+  }
+  .orn-diamond {
+    width: 4px;
+    height: 4px;
+    border: 1px solid var(--gold);
+    opacity: 0.4;
+    transform: rotate(45deg);
+  }
 
-		.center-block {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
+  .tagline {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.82rem;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    opacity: 0;
+    animation: rise 1.4s 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 
-		.seal {
-			width: 50px;
-			height: 51px;
-			margin-bottom: 2rem;
-		}
+  /* ── Footer ── */
+  footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 0 3.5rem 2.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    opacity: 0;
+    animation: rise 1.4s 1.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    left: 3.5rem;
+    right: 3.5rem;
+    bottom: 1rem;
+    border-top: 1px solid var(--ghost);
+  }
+  .f-col {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .f-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .f-dot {
+    width: 2px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.35;
+  }
 
-		.title {
-			font-size: clamp(3rem, 6.5vw, 6.5rem);
-			font-weight: 400;
-			letter-spacing: 0.18em;
-			text-transform: uppercase;
-			user-select: none;
-			padding-right: 0.18em;
-			color: rgba(46, 42, 37, 0.32);
-			text-shadow:
-				-1px -1px 0px rgba(255, 255, 255, 0.75),
-				1px 1px 0px rgba(46, 42, 37, 0.2),
-				0px 1px 3px rgba(46, 42, 37, 0.08);
-			margin-bottom: 1.25rem;
-		}
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes rise-title {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-		.framing {
-			font-size: 0.6875rem;
-			font-weight: 300;
-			letter-spacing: 0.14em;
-			text-transform: uppercase;
-			color: rgba(46, 42, 37, 0.38);
-			padding-right: 0.14em;
-		}
-
-		/* Footer */
-		footer {
-			padding: 0 4rem 3rem;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			gap: 1.25rem;
-		}
-
-		.footer-row {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			gap: 1.75rem;
-		}
-
-		.footer-text {
-			font-size: 0.625rem;
-			font-weight: 300;
-			letter-spacing: 0.12em;
-			color: rgba(46, 42, 37, 0.45);
-			text-transform: uppercase;
-			min-width: 5.5em;
-		}
-
-		.footer-text-left {
-			text-align: right;
-		}
-
-		.footer-text-right {
-			text-align: left;
-		}
-
-		.footer-ornament {
-			display: flex;
-			align-items: center;
-			gap: 0.625rem;
-		}
-
-		.footer-line {
-			width: 28px;
-			height: 1px;
-			background: rgba(46, 42, 37, 0.1);
-		}
-
-		.footer-diamond {
-			width: 4px;
-			height: 4px;
-			background: var(--gold);
-			transform: rotate(45deg);
-			opacity: 0.4;
-		}
-
-		.footer-legal {
-			font-size: 0.5rem;
-			font-weight: 300;
-			letter-spacing: 0.1em;
-			color: rgba(46, 42, 37, 0.25);
-			text-transform: uppercase;
-		}
-
-		@keyframes pageIn {
-			from {
-				opacity: 0;
-			}
-
-			to {
-				opacity: 1;
-			}
-		}
-
-		@media (max-width: 640px) {
-			nav {
-				padding: 2rem 1.5rem;
-			}
-
-			footer {
-				padding: 0 1.5rem 2rem;
-			}
-
-			.footer-ornament {
-				display: none;
-			}
-		}
-	</style>
+  @media (max-width: 640px) {
+    .upper { top: 30%; }
+    .lower { top: 70%; }
+    footer {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0 1.5rem 1.8rem;
+    }
+    footer::before { left: 1.5rem; right: 1.5rem; }
+    .f-center { position: static; transform: none; }
+    .f-col:last-child { order: -1; }
+  }
+</style>
 </head>
-
 <body>
-	<div class="page">
 
-		<nav>
-			<a href="https://calendly.com/kulia" target="_blank" rel="noopener noreferrer" class="nav-link">Henvendelse</a>
-		</nav>
+<canvas id="lorenz"></canvas>
 
-		<main>
-			<div class="center-block">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="682 219 636 653" class="seal" role="img" aria-hidden="true">
-					<g transform="translate(0,1090) scale(0.1,-0.1)" class="logo-debossed" fill-rule="evenodd">
-						<path
-							d="M9710 8499 c-613 -65 -1140 -292 -1628 -703 -85 -71 -249 -237 -328 -331 -481 -571 -734 -1269 -734 -2025 0 -346 55 -678 164 -996 269 -782 806 -1400 1531 -1762 394 -197 762 -287 1230 -299 358 -9 638 32 970 142 356 119 721 326 1000 569 310 269 539 565 730 941 162 318 249 598 312 995 22 143 26 650 5 795 -73 513 -229 944 -485 1333 -91 139 -100 151 -228 305 -81 97 -295 311 -342 342 -34 22 -19 35 -166 -148 -92 -116 -108 -142 -99 -155 7 -10 50 -53 97 -97 120 -111 249 -261 365 -424 39 -56 170 -280 199 -342 61 -131 84 -188 122 -299 154 -445 189 -892 109 -1380 -8 -52 -22 -117 -30 -145 -53 -186 -69 -239 -96 -315 -40 -113 -163 -363 -232 -473 -148 -236 -381 -499 -586 -664 -407 -328 -886 -521 -1396 -564 -558 -47 -1171 123 -1631 453 -178 129 -215 160 -348 293 -240 240 -397 461 -540 761 -106 222 -192 518 -225 769 -53 415 -16 825 111 1222 125 391 378 793 682 1086 322 311 712 532 1114 632 273 68 470 91 723 82 191 -7 315 -24 485 -64 173 -42 167 -43 249 58 39 48 98 119 130 158 38 46 56 75 49 82 -24 24 -279 100 -433 129 -192 36 -356 50 -570 49 -113 -1 -239 -5 -280 -10z" />
-						<path
-							d="M11240 8177 c-37 -46 -276 -342 -370 -457 -30 -37 -145 -177 -255 -310 -110 -133 -243 -295 -295 -359 -393 -486 -631 -777 -1125 -1381 l-150 -183 -3 847 -2 846 -39 0 c-82 0 -270 -50 -361 -95 -25 -13 -56 -35 -70 -50 l-25 -27 -3 -1579 -2 -1579 250 0 250 0 0 461 0 461 91 112 c50 61 128 157 174 213 l83 102 123 -167 c67 -92 155 -212 196 -267 371 -508 533 -726 548 -738 7 -6 567 -4 582 2 2 1 -4 9 -12 19 -15 18 -60 79 -390 527 -427 580 -512 695 -622 841 -62 84 -113 154 -113 158 0 3 24 34 53 68 29 35 172 209 317 388 302 372 351 432 602 740 101 124 194 239 208 256 14 17 70 86 125 154 55 68 154 189 220 271 66 81 183 225 260 319 77 94 148 182 159 195 10 12 16 27 12 33 -12 20 -356 222 -377 222 -3 0 -20 -20 -39 -43z" />
-						<path
-							d="M10960 6295 l0 -545 -379 0 -379 0 -28 -33 c-16 -18 -55 -67 -87 -109 l-59 -77 73 -110 72 -111 394 0 393 0 0 -805 0 -805 250 0 250 0 0 1570 0 1570 -250 0 -250 0 0 -545z" />
-					</g>
-				</svg>
-				<h1 class="title">Kulia</h1>
-				<p class="framing">Privat investeringsselskap</p>
-			</div>
-		</main>
+<div class="page">
 
-		<footer>
-			<div class="footer-row">
-				<span class="footer-text footer-text-left">Lillesand</span>
-				<div class="footer-ornament" aria-hidden="true">
-					<div class="footer-line"></div>
-					<div class="footer-diamond"></div>
-					<div class="footer-line"></div>
-				</div>
-				<span class="footer-text footer-text-right">Norge</span>
-			</div>
-			<div class="footer-legal">Kulia Holding AS &middot; Org.nr 936&thinsp;203&thinsp;<!---->825</div>
-		</footer>
+  <!-- 1/3: Brand identity -->
+  <div class="upper">
+    <div class="monogram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="682 219 636 653" role="img" aria-label="Kulia Holding">
+        <g transform="translate(0,1090) scale(0.1,-0.1)" class="monogram-fill" fill-rule="evenodd">
+          <path d="M9710 8499 c-613 -65 -1140 -292 -1628 -703 -85 -71 -249 -237 -328 -331 -481 -571 -734 -1269 -734 -2025 0 -346 55 -678 164 -996 269 -782 806 -1400 1531 -1762 394 -197 762 -287 1230 -299 358 -9 638 32 970 142 356 119 721 326 1000 569 310 269 539 565 730 941 162 318 249 598 312 995 22 143 26 650 5 795 -73 513 -229 944 -485 1333 -91 139 -100 151 -228 305 -81 97 -295 311 -342 342 -34 22 -19 35 -166 -148 -92 -116 -108 -142 -99 -155 7 -10 50 -53 97 -97 120 -111 249 -261 365 -424 39 -56 170 -280 199 -342 61 -131 84 -188 122 -299 154 -445 189 -892 109 -1380 -8 -52 -22 -117 -30 -145 -53 -186 -69 -239 -96 -315 -40 -113 -163 -363 -232 -473 -148 -236 -381 -499 -586 -664 -407 -328 -886 -521 -1396 -564 -558 -47 -1171 123 -1631 453 -178 129 -215 160 -348 293 -240 240 -397 461 -540 761 -106 222 -192 518 -225 769 -53 415 -16 825 111 1222 125 391 378 793 682 1086 322 311 712 532 1114 632 273 68 470 91 723 82 191 -7 315 -24 485 -64 173 -42 167 -43 249 58 39 48 98 119 130 158 38 46 56 75 49 82 -24 24 -279 100 -433 129 -192 36 -356 50 -570 49 -113 -1 -239 -5 -280 -10z"/>
+          <path d="M11240 8177 c-37 -46 -276 -342 -370 -457 -30 -37 -145 -177 -255 -310 -110 -133 -243 -295 -295 -359 -393 -486 -631 -777 -1125 -1381 l-150 -183 -3 847 -2 846 -39 0 c-82 0 -270 -50 -361 -95 -25 -13 -56 -35 -70 -50 l-25 -27 -3 -1579 -2 -1579 250 0 250 0 0 461 0 461 91 112 c50 61 128 157 174 213 l83 102 123 -167 c67 -92 155 -212 196 -267 371 -508 533 -726 548 -738 7 -6 567 -4 582 2 2 1 -4 9 -12 19 -15 18 -60 79 -390 527 -427 580 -512 695 -622 841 -62 84 -113 154 -113 158 0 3 24 34 53 68 29 35 172 209 317 388 302 372 351 432 602 740 101 124 194 239 208 256 14 17 70 86 125 154 55 68 154 189 220 271 66 81 183 225 260 319 77 94 148 182 159 195 10 12 16 27 12 33 -12 20 -356 222 -377 222 -3 0 -20 -20 -39 -43z"/>
+          <path d="M10960 6295 l0 -545 -379 0 -379 0 -28 -33 c-16 -18 -55 -67 -87 -109 l-59 -77 73 -110 72 -111 394 0 393 0 0 -805 0 -805 250 0 250 0 0 1570 0 1570 -250 0 -250 0 0 -545z"/>
+        </g>
+      </svg>
+    </div>
+    <h1 class="title">Kulia</h1>
+  </div>
 
-	</div>
+  <!-- 2/3: Descriptor -->
+  <div class="lower">
+    <div class="ornament" aria-hidden="true">
+      <div class="orn-line"></div>
+      <div class="orn-diamond"></div>
+      <div class="orn-line"></div>
+    </div>
+    <p class="tagline">Privat investeringsselskap</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <span class="f-col">Lillesand, Norge</span>
+    <div class="f-center">
+      <span class="f-dot"></span>
+      <span class="f-col">Kulia Holding AS</span>
+      <span class="f-dot"></span>
+    </div>
+    <span class="f-col">936&thinsp;203&thinsp;825</span>
+  </footer>
+
+</div>
+
+<script>
+(function() {
+  const canvas = document.getElementById('lorenz');
+  const ctx = canvas.getContext('2d');
+  let w, h, dpr;
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Lorenz system
+  const sigma = 10, rho = 28, beta = 8 / 3;
+  const dt = 0.003;
+  let lx = 0.1, ly = 0, lz = 0;
+
+  const maxTrail = 5500;
+  const trail = [];
+
+  function step() {
+    const dx = sigma * (ly - lx) * dt;
+    const dy = (lx * (rho - lz) - ly) * dt;
+    const dz = (lx * ly - beta * lz) * dt;
+    lx += dx; ly += dy; lz += dz;
+
+    // Velocity for ink effect
+    const vx = sigma * (ly - lx);
+    const vy = lx * (rho - lz) - ly;
+    const vz = lx * ly - beta * lz;
+    const speed = Math.sqrt(vx * vx + vy * vy + vz * vz);
+
+    // Centered at 50% of page height — between the 1/3 and 2/3 text
+    const scale = Math.min(w, h) * 0.013;
+    const cx = w * 0.50;
+    const cy = h * 0.50;
+
+    trail.push({
+      x: cx + (lx * 0.85 + ly * 0.35) * scale,
+      y: cy - (lz - 26) * scale * 0.65,
+      speed: speed
+    });
+    if (trail.length > maxTrail) trail.shift();
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    if (trail.length < 2) return;
+
+    const len = trail.length;
+
+    // Speed range for normalization
+    let minSpeed = Infinity, maxSpeed = 0;
+    for (let i = 0; i < len; i++) {
+      if (trail[i].speed < minSpeed) minSpeed = trail[i].speed;
+      if (trail[i].speed > maxSpeed) maxSpeed = trail[i].speed;
+    }
+    const speedRange = maxSpeed - minSpeed || 1;
+
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    for (let i = 1; i < len; i++) {
+      const age = i / len;
+      const speedNorm = (trail[i].speed - minSpeed) / speedRange;
+
+      // Ink effect: slow = thick & dark, fast = thin & light
+      const lineWidth = 0.3 + (1 - speedNorm) * 1.3;
+      const alphaBase = 0.05 + (1 - speedNorm) * 0.09;
+      const a = age * alphaBase;
+
+      ctx.beginPath();
+      ctx.moveTo(trail[i - 1].x, trail[i - 1].y);
+      ctx.lineTo(trail[i].x, trail[i].y);
+      ctx.strokeStyle = 'rgba(50, 44, 38,' + a + ')';
+      ctx.lineWidth = lineWidth;
+      ctx.stroke();
+    }
+  }
+
+  function animate() {
+    step(); step();
+    draw();
+    requestAnimationFrame(animate);
+  }
+
+  // Pre-trace so butterfly is present on load
+  for (let i = 0; i < 3500; i++) step();
+
+  animate();
+})();
+</script>
+
 </body>
-
 </html>
