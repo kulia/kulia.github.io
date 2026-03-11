@@ -84,7 +84,7 @@
       z-index: 0;
       pointer-events: none;
       opacity: 0;
-      animation: watermark-in 4s 2s ease-out forwards;
+      animation: watermark-in 1.5s 0.5s ease-out forwards;
     }
 
     @keyframes watermark-in {
@@ -382,7 +382,7 @@
 
       // Lorenz system — random seed each visit
       const sigma = 10, rho = 28, beta = 8 / 3;
-      const dt = 0.003;
+      const dt = 0.002;
       let lx = (Math.random() - 0.5) * 2;
       let ly = (Math.random() - 0.5) * 2;
       let lz = Math.random() * 5 + 20;
@@ -450,14 +450,26 @@
         }
       }
 
+      // Adaptive drawing speed — mimics a hand with a pen.
+      // The Lorenz velocity tells us where the pen would naturally
+      // slow down (tight spirals) and speed up (sweeping arcs).
+      function getDrawSpeed() {
+        const vx = sigma * (ly - lx);
+        const vy = lx * (rho - lz) - ly;
+        const vz = lx * ly - beta * lz;
+        const speed = Math.sqrt(vx * vx + vy * vy + vz * vz);
+        // Normalize: Lorenz speed typically ranges ~5–45
+        const norm = Math.min(Math.max((speed - 5) / 40, 0), 1);
+        // Slow: 1 step, fast: 2 steps — with easing
+        return 1 + Math.round(norm * norm);
+      }
+
       function animate() {
-        step(); step();
+        const steps = getDrawSpeed();
+        for (let i = 0; i < steps; i++) step();
         draw();
         requestAnimationFrame(animate);
       }
-
-      // Pre-trace so butterfly is present on load
-      for (let i = 0; i < 3500; i++) step();
 
       animate();
     })();
