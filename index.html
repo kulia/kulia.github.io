@@ -345,6 +345,42 @@
       text-transform: uppercase;
     }
 
+    /* ── Gilded edition (kaos / 23. mai) ── */
+    .monogram-fill,
+    .title-name,
+    .title-descriptor,
+    .orn-line,
+    .orn-diamond,
+    .footer-diamond {
+      transition: color 1.4s ease, fill 1.4s ease, background-color 1.4s ease,
+        border-color 1.4s ease, opacity 1.4s ease;
+    }
+
+    body.gilded .monogram-fill {
+      fill: rgba(146, 118, 62, 0.55);
+    }
+
+    body.gilded .title-name {
+      color: rgba(148, 118, 60, 0.60);
+    }
+
+    body.gilded .title-descriptor {
+      color: rgba(146, 118, 62, 0.55);
+    }
+
+    body.gilded .orn-line {
+      border-top-color: rgba(142, 126, 90, 0.80);
+    }
+
+    body.gilded .orn-diamond {
+      background: var(--gold);
+      opacity: 0.9;
+    }
+
+    body.gilded .footer-diamond {
+      opacity: 0.9;
+    }
+
     @keyframes rise {
       from {
         opacity: 0;
@@ -541,8 +577,8 @@
         const py = p => cy - (p.z - 26) * scale * 0.65;
 
         // Gold is lighter against the parchment, so its ink runs heavier
-        const ink = gilded ? '142, 126, 90' : '50, 44, 38';
-        const inkBoost = gilded ? 1.9 : 1;
+        const ink = gilded ? '146, 112, 44' : '50, 44, 38';
+        const inkBoost = gilded ? 2.6 : 1;
 
         let runStyle = -1, open = false;
         for (let i = 1; i < len; i++) {
@@ -589,9 +625,11 @@
 
       function setInk(gold) {
         gilded = gold;
+        document.body.classList.toggle('gilded', gilded);
         draw();
         console.log('%c' + (gilded ? 'Gyllent blekk.' : 'Jerngallusblekk.'), plate + 'font-size:11px;font-style:italic;');
       }
+      document.body.classList.toggle('gilded', gilded);
 
       let typed = '';
       window.addEventListener('keydown', function (e) {
