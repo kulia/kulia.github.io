@@ -407,6 +407,18 @@
 
 <body>
 
+  <!--
+
+        ᚲ ᚢ ᛚ ᛁ ᚨ
+
+        ẋ = σ(y − x)
+        ẏ = x(ρ − z) − y
+        ż = xy − βz
+
+        σ = 10 · ρ = 28 · β = 8⁄3
+
+  -->
+
   <canvas id="lorenz"></canvas>
   <div class="frame" aria-hidden="true"></div>
 
@@ -465,6 +477,17 @@
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       let w, h, dpr;
 
+      // ᚲᚢᛚᛁᚨ — for den som ser etter
+      const plate = 'background:#EDE8DF;color:#3D3830;font-family:"EB Garamond",Garamond,"Times New Roman",serif;padding:6px 14px;';
+      console.log('%cK U L I A', plate + 'font-size:16px;letter-spacing:0.3em;');
+      console.log('%cẋ = σ(y − x)\nẏ = x(ρ − z) − y\nż = xy − βz\n\nσ = 10 · ρ = 28 · β = 8⁄3', plate + 'font-size:13px;font-style:italic;line-height:1.7;');
+      console.log('%cDeterministisk. Aperiodisk. Diskret.', plate + 'font-size:11px;letter-spacing:0.1em;');
+
+      // Gyllent blekk på Edward N. Lorenz' fødselsdag (23. mai 1917)
+      const today = new Date();
+      let gilded = today.getMonth() === 4 && today.getDate() === 23;
+      if (gilded) console.log('%c23. mai — Edward N. Lorenz, 1917. Gyllent blekk i dag.', plate + 'font-size:11px;font-style:italic;');
+
       // Lorenz system — random seed each visit
       const sigma = 10, rho = 28, beta = 8 / 3;
       const dt = 0.002;
@@ -517,6 +540,10 @@
         const px = p => cx + (p.x * 0.85 + p.y * 0.35) * scale;
         const py = p => cy - (p.z - 26) * scale * 0.65;
 
+        // Gold is lighter against the parchment, so its ink runs heavier
+        const ink = gilded ? '142, 126, 90' : '50, 44, 38';
+        const inkBoost = gilded ? 1.9 : 1;
+
         let runStyle = -1, open = false;
         for (let i = 1; i < len; i++) {
           const age = i / len;
@@ -529,7 +556,7 @@
             if (open) ctx.stroke();
             ctx.beginPath();
             ctx.lineWidth = widthQ / 10;
-            ctx.strokeStyle = 'rgba(50, 44, 38,' + (alphaQ / 200) + ')';
+            ctx.strokeStyle = 'rgba(' + ink + ',' + Math.min(alphaQ * inkBoost / 200, 1) + ')';
             ctx.moveTo(px(trail[i - 1]), py(trail[i - 1]));
             runStyle = styleKey;
             open = true;
@@ -552,6 +579,24 @@
       }
       resize();
       window.addEventListener('resize', resize);
+
+      // Sommerfugleffekten: et klikk forskyver systemet med 10⁻⁹.
+      // Ingenting synes nå — men tegningen blir en annen.
+      window.addEventListener('pointerdown', function () {
+        lx += 1e-9;
+        console.log('%cδ = 10⁻⁹ — tegningen du får se er ikke lenger den du ellers ville sett.', plate + 'font-size:11px;font-style:italic;');
+      });
+
+      let typed = '';
+      window.addEventListener('keydown', function (e) {
+        if (!e.key || e.key.length !== 1) return;
+        typed = (typed + e.key.toLowerCase()).slice(-4);
+        if (typed === 'kaos') {
+          gilded = !gilded;
+          draw();
+          console.log('%c' + (gilded ? 'Gyllent blekk.' : 'Jerngallusblekk.'), plate + 'font-size:11px;font-style:italic;');
+        }
+      });
 
       // Adaptive drawing speed — mimics a hand with a pen.
       // The Lorenz velocity tells us where the pen would naturally
