@@ -587,16 +587,25 @@
         console.log('%cδ = 10⁻⁹ — tegningen du får se er ikke lenger den du ellers ville sett.', plate + 'font-size:11px;font-style:italic;');
       });
 
+      function setInk(gold) {
+        gilded = gold;
+        draw();
+        console.log('%c' + (gilded ? 'Gyllent blekk.' : 'Jerngallusblekk.'), plate + 'font-size:11px;font-style:italic;');
+      }
+
       let typed = '';
       window.addEventListener('keydown', function (e) {
         if (!e.key || e.key.length !== 1) return;
         typed = (typed + e.key.toLowerCase()).slice(-4);
-        if (typed === 'kaos') {
-          gilded = !gilded;
-          draw();
-          console.log('%c' + (gilded ? 'Gyllent blekk.' : 'Jerngallusblekk.'), plate + 'font-size:11px;font-style:italic;');
-        }
+        if (typed === 'kaos') setInk(!gilded);
       });
+
+      // Samme dør, annen nøkkel: kulia.no/#kaos
+      function applyHash() {
+        if ((location.hash || '').toLowerCase() === '#kaos') setInk(true);
+      }
+      window.addEventListener('hashchange', applyHash);
+      applyHash();
 
       // Adaptive drawing speed — mimics a hand with a pen.
       // The Lorenz velocity tells us where the pen would naturally
