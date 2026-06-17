@@ -514,15 +514,13 @@
       let w, h, dpr;
 
       // ᚲᚢᛚᛁᚨ — for den som ser etter
-      const plate = 'background:#EDE8DF;color:#3D3830;font-family:"EB Garamond",Garamond,"Times New Roman",serif;padding:6px 14px;';
+      const plate = 'color:#3D3830;font-family:"EB Garamond",Garamond,"Times New Roman",serif;';
       console.log('%cK U L I A', plate + 'font-size:16px;letter-spacing:0.3em;');
       console.log('%cẋ = σ(y − x)\nẏ = x(ρ − z) − y\nż = xy − βz\n\nσ = 10 · ρ = 28 · β = 8⁄3', plate + 'font-size:13px;font-style:italic;line-height:1.7;');
-      console.log('%cDeterministisk. Aperiodisk. Diskret.', plate + 'font-size:11px;letter-spacing:0.1em;');
 
       // Gyllent blekk på Edward N. Lorenz' fødselsdag (23. mai 1917)
       const today = new Date();
       let gilded = today.getMonth() === 4 && today.getDate() === 23;
-      if (gilded) console.log('%c23. mai — Edward N. Lorenz, 1917. Gyllent blekk i dag.', plate + 'font-size:11px;font-style:italic;');
 
       // Lorenz system — random seed each visit
       const sigma = 10, rho = 28, beta = 8 / 3;
@@ -620,14 +618,12 @@
       // Ingenting synes nå — men tegningen blir en annen.
       window.addEventListener('pointerdown', function () {
         lx += 1e-9;
-        console.log('%cδ = 10⁻⁹ — tegningen du får se er ikke lenger den du ellers ville sett.', plate + 'font-size:11px;font-style:italic;');
       });
 
       function setInk(gold) {
         gilded = gold;
         document.body.classList.toggle('gilded', gilded);
         draw();
-        console.log('%c' + (gilded ? 'Gyllent blekk.' : 'Jerngallusblekk.'), plate + 'font-size:11px;font-style:italic;');
       }
       document.body.classList.toggle('gilded', gilded);
 
