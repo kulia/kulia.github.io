@@ -515,89 +515,373 @@
 
       // ᚲᚢᛚᛁᚨ — for den som ser etter
       const plate = 'color:#3D3830;font-family:"EB Garamond",Garamond,"Times New Roman",serif;';
-      console.log('%cK U L I A', plate + 'font-size:16px;letter-spacing:0.3em;');
-      console.log('%cẋ = σ(y − x)\nẏ = x(ρ − z) − y\nż = xy − βz\n\nσ = 10 · ρ = 28 · β = 8⁄3', plate + 'font-size:13px;font-style:italic;line-height:1.7;');
+      function signPlate(equations) {
+        console.log('%cK U L I A', plate + 'font-size:16px;letter-spacing:0.3em;');
+        console.log('%c' + equations, plate + 'font-size:13px;font-style:italic;line-height:1.7;');
+      }
 
       // Gyllent blekk på Edward N. Lorenz' fødselsdag (23. mai 1917)
       const today = new Date();
       let gilded = today.getMonth() === 4 && today.getDate() === 23;
 
-      // Lorenz system — random seed each visit
-      const sigma = 10, rho = 28, beta = 8 / 3;
-      const dt = 0.002;
-      let lx = (Math.random() - 0.5) * 2;
-      let ly = (Math.random() - 0.5) * 2;
-      let lz = Math.random() * 5 + 20;
+      // ── Lorenz-systemet — tilfeldig startpunkt ved hvert besøk ──
+      function lorenz() {
+        const sigma = 10, rho = 28, beta = 8 / 3;
+        const dt = 0.002;
+        let lx = (Math.random() - 0.5) * 2;
+        let ly = (Math.random() - 0.5) * 2;
+        let lz = Math.random() * 5 + 20;
 
-      // Trail stores raw 3D state; projection happens at draw time
-      // so the drawing survives window resizes intact.
-      const maxTrail = 5500;
-      const trail = [];
+        // Trail stores raw 3D state; projection happens at draw time
+        // so the drawing survives window resizes intact.
+        const maxTrail = 5500;
+        const trail = [];
 
-      function step() {
-        const dx = sigma * (ly - lx) * dt;
-        const dy = (lx * (rho - lz) - ly) * dt;
-        const dz = (lx * ly - beta * lz) * dt;
-        lx += dx; ly += dy; lz += dz;
+        function velocity() {
+          const vx = sigma * (ly - lx);
+          const vy = lx * (rho - lz) - ly;
+          const vz = lx * ly - beta * lz;
+          return Math.sqrt(vx * vx + vy * vy + vz * vz);
+        }
 
-        const vx = sigma * (ly - lx);
-        const vy = lx * (rho - lz) - ly;
-        const vz = lx * ly - beta * lz;
+        function step() {
+          const dx = sigma * (ly - lx) * dt;
+          const dy = (lx * (rho - lz) - ly) * dt;
+          const dz = (lx * ly - beta * lz) * dt;
+          lx += dx; ly += dy; lz += dz;
+          trail.push({ x: lx, y: ly, z: lz, speed: velocity() });
+          if (trail.length > maxTrail) trail.shift();
+        }
 
-        trail.push({ x: lx, y: ly, z: lz, speed: Math.sqrt(vx * vx + vy * vy + vz * vz) });
-        if (trail.length > maxTrail) trail.shift();
+        return {
+          equations: 'ẋ = σ(y − x)\nẏ = x(ρ − z) − y\nż = xy − βz\n\nσ = 10 · ρ = 28 · β = 8⁄3',
+          paths: [trail],
+          alpha: 1,
+          inkGain: 1,
+          heads: false,
+          view: function (w, h) {
+            // Centered at 50% of page height — between the 1/3 and 2/3 text
+            const scale = Math.min(w, h) * 0.013;
+            const cx = w * 0.50, cy = h * 0.50;
+            return {
+              x: p => cx + (p.x * 0.85 + p.y * 0.35) * scale,
+              y: p => cy - (p.z - 26) * scale * 0.65
+            };
+          },
+          // Adaptive drawing speed — mimics a hand with a pen.
+          // The Lorenz velocity tells us where the pen would naturally
+          // slow down (tight spirals) and speed up (sweeping arcs).
+          advance: function () {
+            // Normalize: Lorenz speed typically ranges ~5–45
+            const norm = Math.min(Math.max((velocity() - 5) / 40, 0), 1);
+            // Slow: 1 step, fast: 2 steps — with easing
+            const steps = 1 + Math.round(norm * norm);
+            for (let i = 0; i < steps; i++) step();
+          },
+          // Settle onto the attractor first, then trace one full trail.
+          settle: function () {
+            for (let i = 0; i < 2500 + maxTrail; i++) step();
+          },
+          nudge: function () { lx += 1e-9; }
+        };
       }
+
+      // ── Fullmåne: tre legemer ──
+      // «Sommerfugl I», Šuvakov & Dmitrašinović (2013): en periodisk bane
+      // for tre like masser som er ustabil. Den tegner sommerfuglvinger en
+      // stund, så tar kaos over, og til slutt kastes ett av legemene ut.
+      // Da tørker blekket bort, og tegningen begynner på nytt.
+      function threeBody() {
+        const p1 = 0.30689, p2 = 0.12551;
+        const period = 6.2356;
+        const timeRate = period / 7;   // one loop of the wings ≈ 7 seconds
+        const maxTrail = 2600;         // points per body
+        const minGap = 0.004;          // world units between recorded points
+        const x = new Float64Array(9), v = new Float64Array(9), a = new Float64Array(9);
+        const paths = [[], [], []];
+        const sys = {
+          equations: 'r̈ᵢ = −Σⱼ mⱼ (rᵢ − rⱼ) ⁄ |rᵢ − rⱼ|³\n\nm₁ = m₂ = m₃ = 1 · G = 1',
+          paths: paths,
+          alpha: 1,
+          inkGain: 1.7,
+          heads: true
+        };
+        let fading = false;
+
+        function reset() {
+          // A small, different push every time — never the same drawing twice.
+          // The orbit lies flat on the paper; a tilt far too small to see
+          // waits there until chaos sets in, then lifts the bodies out of it.
+          const d = -(0.01 + Math.random() * 0.02);
+          const tilt = (Math.random() < 0.5 ? -1 : 1) * (0.01 + Math.random() * 0.01);
+          x.set([-1 + d, 0, 0, 1, 0, 0, 0, 0, 0]);
+          v.set([p1, p2, tilt, p1, p2, -tilt, -2 * p1, -2 * p2, 0]);
+          for (const path of paths) path.length = 0;
+          fading = false;
+          sys.alpha = 1;
+          record();
+        }
+
+        function accelerate() {
+          a.fill(0);
+          for (let i = 0; i < 3; i++) {
+            for (let j = i + 1; j < 3; j++) {
+              const dx = x[3 * j] - x[3 * i], dy = x[3 * j + 1] - x[3 * i + 1], dz = x[3 * j + 2] - x[3 * i + 2];
+              const r2 = dx * dx + dy * dy + dz * dz + 1e-12;
+              const f = 1 / (r2 * Math.sqrt(r2));
+              a[3 * i] += dx * f; a[3 * i + 1] += dy * f; a[3 * i + 2] += dz * f;
+              a[3 * j] -= dx * f; a[3 * j + 1] -= dy * f; a[3 * j + 2] -= dz * f;
+            }
+          }
+        }
+
+        function closest() {
+          let m = Infinity;
+          for (let i = 0; i < 3; i++) {
+            for (let j = i + 1; j < 3; j++) {
+              m = Math.min(m, Math.hypot(x[3 * j] - x[3 * i], x[3 * j + 1] - x[3 * i + 1], x[3 * j + 2] - x[3 * i + 2]));
+            }
+          }
+          return m;
+        }
+
+        // Leapfrog with a step that shrinks during close encounters
+        function step(limit) {
+          const dt = Math.min(limit, 0.002, 0.004 * Math.pow(closest(), 1.5));
+          accelerate();
+          for (let i = 0; i < 9; i++) v[i] += a[i] * dt / 2;
+          for (let i = 0; i < 9; i++) x[i] += v[i] * dt;
+          accelerate();
+          for (let i = 0; i < 9; i++) v[i] += a[i] * dt / 2;
+          return dt;
+        }
+
+        function record() {
+          for (let b = 0; b < 3; b++) {
+            const path = paths[b];
+            const px = x[3 * b], py = x[3 * b + 1], pz = x[3 * b + 2];
+            const last = path[path.length - 1];
+            if (last && Math.hypot(px - last.x, py - last.y, pz - last.z) < minGap) continue;
+            // Capped so a near-collision doesn't wash out the rest of the ink
+            const speed = Math.hypot(v[3 * b], v[3 * b + 1], v[3 * b + 2]);
+            path.push({ x: px, y: py, z: pz, speed: Math.min(speed, 1.6) });
+            if (path.length > maxTrail) path.shift();
+          }
+        }
+
+        function run(time) {
+          let n = 0;
+          while (time > 1e-9 && n++ < 6000) {
+            time -= step(time);
+            record();
+          }
+        }
+
+        // Seen from a little above the plane, with perspective: what comes
+        // towards you is drawn larger and with a heavier hand.
+        const tiltC = Math.cos(0.3), tiltS = Math.sin(0.3), eye = 5;
+        sys.view = function (w, h) {
+          const scale = Math.min(w, h) * 0.27;
+          const cx = w * 0.50, cy = h * 0.50;
+          const depth = p => p.y * tiltS + p.z * tiltC;
+          const persp = p => eye / (eye - depth(p));
+          return {
+            x: p => cx + p.x * persp(p) * scale,
+            y: p => cy - (p.y * tiltC - p.z * tiltS) * persp(p) * scale,
+            weight: p => Math.min(Math.max(Math.exp(depth(p) * 0.9), 0.45), 1.8)
+          };
+        };
+        sys.advance = function (seconds) {
+          run(seconds * timeRate);
+          if (!fading) {
+            for (let b = 0; b < 3; b++) {
+              if (Math.hypot(x[3 * b], x[3 * b + 1], x[3 * b + 2]) > 2.6) fading = true;
+            }
+          } else {
+            sys.alpha -= seconds / 3;
+            if (sys.alpha <= 0) reset();
+          }
+        };
+        // A little more than one loop: the wings, finished
+        sys.settle = function () { run(period * 1.3); };
+        sys.nudge = function () { x[0] += 1e-9; };
+
+        reset();
+        return sys;
+      }
+
+      // ── 11.11: veien til kaos ──
+      // Den logistiske avbildningen, xₙ₊₁ = r·xₙ(1 − xₙ), gravert fra venstre
+      // mot høyre: én linje, to, fire, åtte — så kaos, med små vinduer av
+      // orden inni. Avstanden mellom delingene krymper med Feigenbaums δ.
+      function feigenbaum() {
+        const rMin = 2.9, rMax = 4;
+        const engrave = 28;            // seconds from first line to finished plate
+        const settleIter = 400, plotIter = 260;
+        let progress = 0;              // share of the r-axis engraved so far
+        let painted = 0;               // columns already on the layer
+        const layer = document.createElement('canvas');
+        const lctx = layer.getContext('2d');
+        let lw = 0, lh = 0, layerKey = '';
+
+        function frame(w, h) {
+          const halfW = Math.min(w * 0.40, h * 0.62);
+          const halfH = Math.min(w, h) * 0.12;
+          return { left: w / 2 - halfW, width: halfW * 2, top: h / 2 - halfH, height: halfH * 2 };
+        }
+
+        function paintColumn(col, f, ink, gold) {
+          const r = rMin + (rMax - rMin) * (col + 0.5) / f.width;
+          let xv = 0.5;
+          for (let i = 0; i < settleIter; i++) xv = r * xv * (1 - xv);
+          const rows = Math.ceil(f.height) + 1;
+          const hits = new Uint16Array(rows);
+          for (let i = 0; i < plotIter; i++) {
+            xv = r * xv * (1 - xv);
+            hits[Math.round((1 - xv) * (rows - 1))]++;
+          }
+          // Settled branches gather a heavy line; chaos spreads into a haze
+          for (let y = 0; y < rows; y++) {
+            if (!hits[y]) continue;
+            const alpha = Math.min((0.05 + 0.32 * Math.sqrt(hits[y] / plotIter)) * (gold ? 1.9 : 1), 0.7);
+            lctx.fillStyle = 'rgba(' + ink + ',' + alpha + ')';
+            lctx.fillRect(f.left + col, f.top + y, 1, 1);
+          }
+        }
+
+        return {
+          equations: 'xₙ₊₁ = r xₙ (1 − xₙ)\n\nδ = 4,669 201 609 …',
+          paint: function (ctx, w, h, ink, gold) {
+            const key = w + 'x' + h + ':' + dpr + ':' + ink;
+            if (key !== layerKey) {
+              // New size or new ink: start the layer over and replay
+              layerKey = key;
+              lw = layer.width = w * dpr;
+              lh = layer.height = h * dpr;
+              lctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+              painted = 0;
+            }
+            const f = frame(w, h);
+            const target = Math.floor(progress * f.width);
+            while (painted < target) paintColumn(painted++, f, ink, gold);
+            ctx.drawImage(layer, 0, 0, lw, lh, 0, 0, w, h);
+            // The burin: a faint upright line where the engraving stands
+            if (progress < 1) {
+              ctx.fillStyle = 'rgba(' + ink + ',0.10)';
+              ctx.fillRect(f.left + target, f.top, 1, f.height);
+            }
+          },
+          advance: function (seconds) { progress = Math.min(progress + seconds / engrave, 1); },
+          settle: function () { progress = 1; },
+          nudge: function () { }
+        };
+      }
+
+      // Fullmånetid (Meeus, kap. 49), juliansk dag
+      function fullMoonJDE(k) {
+        const R = Math.PI / 180, s = Math.sin;
+        const T = k / 1236.85, T2 = T * T, T3 = T2 * T, T4 = T3 * T;
+        const E = 1 - 0.002516 * T - 0.0000074 * T2;
+        const M = (2.5534 + 29.1053567 * k - 0.0000014 * T2 - 0.00000011 * T3) * R;
+        const Mp = (201.5643 + 385.81693528 * k + 0.0107582 * T2 + 0.00001238 * T3 - 0.000000058 * T4) * R;
+        const F = (160.7108 + 390.67050284 * k - 0.0016118 * T2 - 0.00000227 * T3 + 0.000000011 * T4) * R;
+        const O = (124.7746 - 1.56375588 * k + 0.0020672 * T2 + 0.00000215 * T3) * R;
+        return 2451550.09766 + 29.530588861 * k + 0.00015437 * T2 - 0.00000015 * T3 + 0.00000000073 * T4
+          - 0.40614 * s(Mp) + 0.17302 * E * s(M) + 0.01614 * s(2 * Mp) + 0.01043 * s(2 * F)
+          + 0.00734 * E * s(Mp - M) - 0.00515 * E * s(Mp + M) + 0.00209 * E * E * s(2 * M)
+          - 0.00111 * s(Mp - 2 * F) - 0.00057 * s(Mp + 2 * F) + 0.00056 * E * s(2 * Mp + M)
+          - 0.00042 * s(3 * Mp) + 0.00042 * E * s(M + 2 * F) + 0.00038 * E * s(M - 2 * F)
+          - 0.00024 * E * s(2 * Mp - M) - 0.00017 * s(O);
+      }
+
+      // Is there a full moon on the visitor's calendar day?
+      function isFullMoonDay(date) {
+        const jd = date.getTime() / 864e5 + 2440587.5;
+        const k = Math.floor((jd - 2451550.09766) / 29.530588861);
+        for (let i = -1; i <= 1; i++) {
+          const moon = new Date((fullMoonJDE(k + i + 0.5) - 2440587.5) * 864e5);
+          if (moon.toDateString() === date.toDateString()) return true;
+        }
+        return false;
+      }
+
+      let sys;
+      let kind = 'lorenz';
+      const systems = { lorenz: lorenz, moon: threeBody, feigenbaum: feigenbaum };
 
       function draw() {
         ctx.clearRect(0, 0, w, h);
-        const len = trail.length;
-        if (len < 2) return;
 
-        // Centered at 50% of page height — between the 1/3 and 2/3 text
-        const scale = Math.min(w, h) * 0.013;
-        const cx = w * 0.50;
-        const cy = h * 0.50;
+        // Gold is lighter against the parchment, so its ink runs heavier
+        const ink = gilded ? '146, 112, 44' : '50, 44, 38';
+        if (sys.paint) {
+          sys.paint(ctx, w, h, ink, gilded);
+          return;
+        }
 
+        const paths = sys.paths;
         let minSpeed = Infinity, maxSpeed = 0;
-        for (let i = 0; i < len; i++) {
-          if (trail[i].speed < minSpeed) minSpeed = trail[i].speed;
-          if (trail[i].speed > maxSpeed) maxSpeed = trail[i].speed;
+        for (const path of paths) {
+          for (let i = 0; i < path.length; i++) {
+            if (path[i].speed < minSpeed) minSpeed = path[i].speed;
+            if (path[i].speed > maxSpeed) maxSpeed = path[i].speed;
+          }
         }
         const speedRange = maxSpeed - minSpeed || 1;
+        const view = sys.view(w, h);
+        const weight = view.weight || (() => 1);
 
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
+        ctx.globalAlpha = Math.max(sys.alpha, 0);
+        const inkBoost = (gilded ? 2.6 : 1) * sys.inkGain;
 
         // Ink effect: slow = thick & dark, fast = thin & light.
         // Consecutive segments with the same quantized style share one
         // path, so a frame costs dozens of strokes instead of thousands.
-        const px = p => cx + (p.x * 0.85 + p.y * 0.35) * scale;
-        const py = p => cy - (p.z - 26) * scale * 0.65;
+        for (const path of paths) {
+          const len = path.length;
+          if (len < 2) continue;
+          let runStyle = -1, open = false;
+          for (let i = 1; i < len; i++) {
+            const age = i / len;
+            const speedNorm = (path[i].speed - minSpeed) / speedRange;
+            const k = weight(path[i]);
+            const widthQ = Math.round((0.3 + (1 - speedNorm) * 1.3) * k * 10);
+            const alphaQ = Math.round(age * (0.05 + (1 - speedNorm) * 0.09) * k * 200);
+            const styleKey = widthQ * 1000 + alphaQ;
 
-        // Gold is lighter against the parchment, so its ink runs heavier
-        const ink = gilded ? '146, 112, 44' : '50, 44, 38';
-        const inkBoost = gilded ? 2.6 : 1;
-
-        let runStyle = -1, open = false;
-        for (let i = 1; i < len; i++) {
-          const age = i / len;
-          const speedNorm = (trail[i].speed - minSpeed) / speedRange;
-          const widthQ = Math.round((0.3 + (1 - speedNorm) * 1.3) * 10);
-          const alphaQ = Math.round(age * (0.05 + (1 - speedNorm) * 0.09) * 200);
-          const styleKey = widthQ * 1000 + alphaQ;
-
-          if (styleKey !== runStyle) {
-            if (open) ctx.stroke();
-            ctx.beginPath();
-            ctx.lineWidth = widthQ / 10;
-            ctx.strokeStyle = 'rgba(' + ink + ',' + Math.min(alphaQ * inkBoost / 200, 1) + ')';
-            ctx.moveTo(px(trail[i - 1]), py(trail[i - 1]));
-            runStyle = styleKey;
-            open = true;
+            if (styleKey !== runStyle) {
+              if (open) ctx.stroke();
+              ctx.beginPath();
+              ctx.lineWidth = widthQ / 10;
+              ctx.strokeStyle = 'rgba(' + ink + ',' + Math.min(alphaQ * inkBoost / 200, 1) + ')';
+              ctx.moveTo(view.x(path[i - 1]), view.y(path[i - 1]));
+              runStyle = styleKey;
+              open = true;
+            }
+            ctx.lineTo(view.x(path[i]), view.y(path[i]));
           }
-          ctx.lineTo(px(trail[i]), py(trail[i]));
+          if (open) ctx.stroke();
+
+          // The bodies themselves: a drop of ink where the pen is
+          if (sys.heads) {
+            const p = path[len - 1];
+            ctx.beginPath();
+            ctx.arc(view.x(p), view.y(p), 2.2 * weight(p), 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(' + ink + ',' + Math.min(0.32 * (gilded ? 2 : 1), 1) + ')';
+            ctx.fill();
+          }
         }
-        if (open) ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+
+      function use(next) {
+        kind = next;
+        sys = systems[kind]();
+        signPlate(sys.equations);
+        if (reducedMotion) sys.settle();
+        if (w) draw();
       }
 
       function resize() {
@@ -611,13 +895,29 @@
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         draw();
       }
+
+      // Samme dør, andre nøkler: kulia.no/#kaos, #fullmane og #feigenbaum
+      const keys = { '#fullmane': 'moon', '#fullmåne': 'moon', '#feigenbaum': 'feigenbaum' };
+      function hashKey() {
+        let hash = (location.hash || '').toLowerCase();
+        try { hash = decodeURIComponent(hash); } catch (e) { }
+        return hash;
+      }
+
+      function todaysKind() {
+        if (today.getMonth() === 10 && today.getDate() === 11) return 'feigenbaum';
+        if (isFullMoonDay(today)) return 'moon';
+        return 'lorenz';
+      }
+
+      use(keys[hashKey()] || todaysKind());
       resize();
       window.addEventListener('resize', resize);
 
       // Sommerfugleffekten: et klikk forskyver systemet med 10⁻⁹.
       // Ingenting synes nå — men tegningen blir en annen.
       window.addEventListener('pointerdown', function () {
-        lx += 1e-9;
+        sys.nudge();
       });
 
       function setInk(gold) {
@@ -632,45 +932,29 @@
         if (!e.key || e.key.length !== 1) return;
         typed = (typed + e.key.toLowerCase()).slice(-4);
         if (typed === 'kaos') setInk(!gilded);
+        if (typed === 'måne') use(kind === 'moon' ? 'lorenz' : 'moon');
       });
 
-      // Samme dør, annen nøkkel: kulia.no/#kaos
       function applyHash() {
-        if ((location.hash || '').toLowerCase() === '#kaos') setInk(true);
+        const hash = hashKey();
+        if (hash === '#kaos') setInk(true);
+        if (keys[hash] && keys[hash] !== kind) use(keys[hash]);
       }
       window.addEventListener('hashchange', applyHash);
       applyHash();
 
-      // Adaptive drawing speed — mimics a hand with a pen.
-      // The Lorenz velocity tells us where the pen would naturally
-      // slow down (tight spirals) and speed up (sweeping arcs).
-      function getDrawSpeed() {
-        const vx = sigma * (ly - lx);
-        const vy = lx * (rho - lz) - ly;
-        const vz = lx * ly - beta * lz;
-        const speed = Math.sqrt(vx * vx + vy * vy + vz * vz);
-        // Normalize: Lorenz speed typically ranges ~5–45
-        const norm = Math.min(Math.max((speed - 5) / 40, 0), 1);
-        // Slow: 1 step, fast: 2 steps — with easing
-        return 1 + Math.round(norm * norm);
-      }
+      if (reducedMotion) return;
 
-      if (reducedMotion) {
-        // Render the finished drawing in one pass: settle onto the
-        // attractor first, then trace one full trail.
-        for (let i = 0; i < 2500 + maxTrail; i++) step();
-        draw();
-        return;
-      }
-
-      function animate() {
-        const steps = getDrawSpeed();
-        for (let i = 0; i < steps; i++) step();
+      let last = performance.now();
+      function animate(now) {
+        // Capped so a background tab doesn't leap ahead when it returns
+        const seconds = Math.min((now - last) / 1000, 0.05);
+        last = now;
+        sys.advance(seconds);
         draw();
         requestAnimationFrame(animate);
       }
-
-      animate();
+      requestAnimationFrame(animate);
     })();
   </script>
 
